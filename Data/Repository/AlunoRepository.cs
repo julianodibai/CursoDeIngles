@@ -27,7 +27,11 @@ namespace CursoDeIngles.Data.Repository
 
         public async Task<Aluno> BuscarAlunosIdAsync(int id)
         {
-            return await _context.Alunos.Include(x => x.Turmas).Where(x => x.Id == id).FirstOrDefaultAsync(); 
+            return await _context.Alunos
+                                    .Include(a => a.Turmas)
+                                    .ThenInclude(t => t.Alunos)
+                                    .Where(a => a.Id == id)
+                                    .FirstOrDefaultAsync();                     
         }
     }
 }

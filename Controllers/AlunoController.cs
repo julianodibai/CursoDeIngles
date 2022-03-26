@@ -1,3 +1,4 @@
+using AutoMapper;
 using CursoDeIngles.Data.Repository.Interfaces;
 using CursoDeIngles.Models.DTOs;
 using CursoDeIngles.Models.Entities;
@@ -10,9 +11,11 @@ namespace CursoDeIngles.Controllers
     public class AlunoController : ControllerBase
     {
         private readonly IAlunoRepository _repository;
-        public AlunoController(IAlunoRepository repository)
+        private readonly IMapper _mapper;
+        public AlunoController(IAlunoRepository repository, IMapper mapper)
         {
             _repository = repository;
+            _mapper = mapper;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -28,18 +31,62 @@ namespace CursoDeIngles.Controllers
         {
             var aluno = await _repository.BuscarAlunosIdAsync(id);
 
-            var alunoRetorno = new AlunoDetalhesDTO
-            {
-                Id = aluno.Id,
-                Nome = aluno.Nome,
-                CPF = aluno.CPF,
-                Email = aluno.Email,
-                Turmas = aluno.Turmas
-            };
+            var alunoRetorno = _mapper.Map<AlunoDetalhesDTO>(aluno);
 
             return alunoRetorno != null
                         ? Ok(alunoRetorno)
                         : BadRequest("Não tem alunos");
-        }        
+        }   
+        [HttpPost]
+        public async Task<IActionResult> Post(AlunoAdicionarDTO aluno)
+        {
+            if(aluno == null)
+                return BadRequest("Dados invalidos");
+
+            var alunoAdicionar = _mapper.Map<Aluno>(aluno);
+
+            _repository.Add(alunoAdicionar);
+
+            return await _repository.SaveChangesAsync() 
+                                        ? Ok("Aluno adicionado com sucesso")
+                                        : BadRequest("Erro ao salvar aluno");
+
+        }     
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id,AlunoAdicionarDTO aluno)
+        {
+            if(id <= 0)
+                return BadRequest("Aluno não informado");
+            
+            var alunoDb = await _repository.BuscarAlunosIdAsync(id);
+
+            var alunoAtualizar = _mapper.Map(aluno, alunoDb);
+
+            _repository.Update(alunoAtualizar);
+
+            return await _repository.SaveChangesAsync()
+                                ? Ok("Aluno atualizado com sucesso")
+                                : BadRequest("Erro ao atualizar aluno");
+        }
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if(id <= 0)
+                return BadRequest("Aluno não informado");
+
+            var alunoExcluir = await _repository.BuscarAlunosIdAsync(id);
+
+            if(alunoExcluir == null) 
+                return NotFound("Aluno não encontrado");
+            
+            _repository.Delete(alunoExcluir);
+
+            return await _repository.SaveChangesAsync()
+                                ? Ok("Aluno Excluido com sucesso")
+                                : BadRequest("Erro ao excluir aluno");
+        }
+
+        
+
     }
 }

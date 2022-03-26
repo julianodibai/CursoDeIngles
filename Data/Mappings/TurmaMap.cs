@@ -8,9 +8,7 @@ namespace CursoDeIngles.Data.Mappings
     {
 
         public TurmaMap() : base("tb_turma")
-        {
-            
-        }
+        { }
         public override void Configure(EntityTypeBuilder<Turma> builder)
         {
             base.Configure(builder);

@@ -63,3 +63,5 @@ C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\obj\Debug\net6.0\Curso
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\obj\Debug\net6.0\ref\CursoDeIngles.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\obj\Debug\net6.0\CursoDeIngles.pdb
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\obj\Debug\net6.0\CursoDeIngles.genruntimeconfig.cache
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

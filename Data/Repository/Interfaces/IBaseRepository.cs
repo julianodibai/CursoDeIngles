@@ -6,6 +6,6 @@ namespace CursoDeIngles.Data.Repository.Interfaces
         public void Add<T>(T entity) where T : class;
         public void Update<T>(T entity) where T : class;
         public void Delete<T>(T entity) where T : class;
-        bool SaveChanges();
+        Task<bool> SaveChangesAsync();
     }
 }

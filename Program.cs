@@ -1,6 +1,7 @@
 using CursoDeIngles.Data.Context;
 using CursoDeIngles.Data.Repository;
 using CursoDeIngles.Data.Repository.Interfaces;
+using CursoDeIngles.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options => {
 builder.Services.AddScoped<IBaseRepository, BaseRepository>();
 builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 builder.Services.AddScoped<ITurmaRepository, TurmaRepository>();
+builder.Services.AddAutoMapper(typeof(CursoProfile)); //ou program?
 
 
 var app = builder.Build();

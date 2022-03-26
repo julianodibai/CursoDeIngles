@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "0+YL9ggYY+S8mvAzNwerYDIwOuX8vVaMCym3vu9TlcxjTzxI5YRwhAWG9gjwXOuKFs26swE7KiRbrisiWXfsZQ==",
+  "dgSpecHash": "V9+n05AcLJrU0bB3hIRbyVHIufrMCYR5+Ki5wxwGOTU8/BvWS+IX5XRIlGNSmmwLB9qUGDktL3+TxTABBKuBng==",
   "success": true,
   "projectFilePath": "C:\\Users\\juliano\\OneDrive\\Área de Trabalho\\CursoDeIngles\\CursoDeIngles.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\juliano\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
+    "C:\\Users\\juliano\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",
     "C:\\Users\\juliano\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\juliano\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.3\\microsoft.aspnetcore.jsonpatch.6.0.3.nupkg.sha512",
     "C:\\Users\\juliano\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.3\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.3.nupkg.sha512",
