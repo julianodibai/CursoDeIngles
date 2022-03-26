@@ -17,6 +17,9 @@ namespace CursoDeIngles.Data.Mappings
 
             builder.Property(x => x.AnoLetivo)
                     .HasColumnName("anoLetivo");
+            builder.Property(x => x.Nivel)
+                    .HasColumnName("nivel");
         }
+                    
     }
 }

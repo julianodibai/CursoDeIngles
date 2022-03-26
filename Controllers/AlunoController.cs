@@ -1,10 +1,12 @@
 using CursoDeIngles.Data.Repository.Interfaces;
+using CursoDeIngles.Models.DTOs;
+using CursoDeIngles.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursoDeIngles.Controllers
 {
     [ApiController]
-    [Route("api/controller")]
+    [Route("api/Aluno")]
     public class AlunoController : ControllerBase
     {
         private readonly IAlunoRepository _repository;
@@ -13,21 +15,30 @@ namespace CursoDeIngles.Controllers
             _repository = repository;
         }
         [HttpGet]
-        public IActionResult Get()
+        public async Task<IActionResult> Get()
         {
-            var alunos = _repository.BuscarAlunos();
+            var alunosDTO = await _repository.BuscarAlunosAsync();
 
-            return alunos.Any()
-                        ? Ok(alunos)
+            return alunosDTO.Any()
+                        ? Ok(alunosDTO)
                         : BadRequest("Não tem alunos");
         }
         [HttpGet("{id}")]
-        public IActionResult GetById(int id)
+        public async Task<IActionResult> GetById(int id)
         {
-            var aluno = _repository.BuscarAlunosId(id);
+            var aluno = await _repository.BuscarAlunosIdAsync(id);
 
-            return aluno != null
-                        ? Ok(aluno)
+            var alunoRetorno = new AlunoDetalhesDTO
+            {
+                Id = aluno.Id,
+                Nome = aluno.Nome,
+                CPF = aluno.CPF,
+                Email = aluno.Email,
+                Turmas = aluno.Turmas
+            };
+
+            return alunoRetorno != null
+                        ? Ok(alunoRetorno)
                         : BadRequest("Não tem alunos");
         }        
     }

@@ -13,9 +13,13 @@ C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Curso
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\CursoDeIngles.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\ref\CursoDeIngles.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\CursoDeIngles.pdb
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Humanizer.dll
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.Data.SqlClient.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Relational.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.Extensions.Caching.Memory.dll
@@ -27,6 +31,8 @@ C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Micro
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.OpenApi.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -57,9 +63,3 @@ C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\obj\Debug\net6.0\Curso
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\obj\Debug\net6.0\ref\CursoDeIngles.dll
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\obj\Debug\net6.0\CursoDeIngles.pdb
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\obj\Debug\net6.0\CursoDeIngles.genruntimeconfig.cache
-C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Humanizer.dll
-C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.EntityFrameworkCore.Design.dll
-C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.AspNetCore.JsonPatch.dll
-C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
-C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Newtonsoft.Json.dll
-C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll

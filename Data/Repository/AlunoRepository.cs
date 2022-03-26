@@ -1,4 +1,5 @@
 using CursoDeIngles.Data.Context;
+using CursoDeIngles.Models.DTOs;
 using CursoDeIngles.Data.Repository.Interfaces;
 using CursoDeIngles.Models.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -13,15 +14,20 @@ namespace CursoDeIngles.Data.Repository
             _context = context;
         }
 
-        public List<Aluno> BuscarAlunos()
+        public async Task<List<AlunoDTO>> BuscarAlunosAsync()
         {
-            //include faz o join entre as tabelas
-            return _context.Alunos.Include(x => x.Turmas).ToList();   
+            //Include(x => x.Turmas)faz o join entre as tabelas
+            return await _context.Alunos
+                             .Select(x => new AlunoDTO{
+                                        Id = x.Id,
+                                        Nome = x.Nome 
+                             })
+                             .ToListAsync();   
         }
 
-        public Aluno BuscarAlunosId(int id)
+        public async Task<Aluno> BuscarAlunosIdAsync(int id)
         {
-            return _context.Alunos.Include(x => x.Turmas).Where(x => x.Id == id).FirstOrDefault(); 
+            return await _context.Alunos.Include(x => x.Turmas).Where(x => x.Id == id).FirstOrDefaultAsync(); 
         }
     }
 }
