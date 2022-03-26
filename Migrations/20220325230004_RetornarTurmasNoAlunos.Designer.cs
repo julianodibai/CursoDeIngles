@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CursoDeIngles.Migrations
 {
     [DbContext(typeof(CursoContext))]
-    [Migration("20220325211424_turma")]
-    partial class turma
+    [Migration("20220325230004_RetornarTurmasNoAlunos")]
+    partial class RetornarTurmasNoAlunos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -53,6 +53,23 @@ namespace CursoDeIngles.Migrations
                     b.ToTable("tb_aluno", (string)null);
                 });
 
+            modelBuilder.Entity("CursoDeIngles.Models.Entities.AlunoTurma", b =>
+                {
+                    b.Property<int>("TurmaId")
+                        .HasColumnType("int")
+                        .HasColumnName("id_turma");
+
+                    b.Property<int>("AlunoId")
+                        .HasColumnType("int")
+                        .HasColumnName("id_aluno");
+
+                    b.HasKey("TurmaId", "AlunoId");
+
+                    b.HasIndex("AlunoId");
+
+                    b.ToTable("tb_aluno_turma", (string)null);
+                });
+
             modelBuilder.Entity("CursoDeIngles.Models.Entities.Turma", b =>
                 {
                     b.Property<int>("Id")
@@ -69,6 +86,25 @@ namespace CursoDeIngles.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tb_turma", (string)null);
+                });
+
+            modelBuilder.Entity("CursoDeIngles.Models.Entities.AlunoTurma", b =>
+                {
+                    b.HasOne("CursoDeIngles.Models.Entities.Aluno", "Aluno")
+                        .WithMany()
+                        .HasForeignKey("AlunoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CursoDeIngles.Models.Entities.Turma", "Turma")
+                        .WithMany()
+                        .HasForeignKey("TurmaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Aluno");
+
+                    b.Navigation("Turma");
                 });
 #pragma warning restore 612, 618
         }

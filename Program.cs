@@ -1,4 +1,6 @@
 using CursoDeIngles.Data.Context;
+using CursoDeIngles.Data.Repository;
+using CursoDeIngles.Data.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,6 +17,13 @@ var connectionString = builder.Configuration.GetConnectionString("Default");
 builder.Services.AddDbContext<CursoContext>(options => 
     options.UseSqlServer(connectionString,     assembly => assembly.MigrationsAssembly(typeof(CursoContext).Assembly.FullName))
 );
+builder.Services.AddControllers().AddNewtonsoftJson(options => {
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+});
+builder.Services.AddScoped<IBaseRepository, BaseRepository>();
+builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
+builder.Services.AddScoped<ITurmaRepository, TurmaRepository>();
+
 
 var app = builder.Build();
 

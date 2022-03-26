@@ -16,14 +16,37 @@ namespace CursoDeIngles.Data.Mappings
         {
             base.Configure(builder);
 
-            builder.Property(x => x.Nome)
+            builder.Property(a => a.Nome)
                     .HasColumnName("nome")
                     .IsRequired();
-            builder.Property(x => x.CPF)
+            builder.Property(a => a.CPF)
                     .HasColumnName("cpf")
                     .IsRequired();
-            builder.Property(x => x.Email)
+            builder.Property(a => a.Email)
                     .HasColumnName("email");
+                    
+            builder.HasMany(a => a.Turmas)
+                    .WithMany(t => t.Alunos)
+                    .UsingEntity<AlunoTurma>(
+                        x => x.HasOne(a => a.Turma)
+                                .WithMany()
+                                .HasForeignKey(t => t.TurmaId),
+                        x => x.HasOne(t => t.Aluno)
+                                .WithMany()
+                                .HasForeignKey(a => a.AlunoId),  
+                        x =>
+                        {
+                            x.ToTable("tb_aluno_turma");
+
+                            x.HasKey(x => new {x.TurmaId, x.AlunoId});
+                            x.Property(x => x.TurmaId)
+                                .HasColumnName("id_turma")
+                                .IsRequired();
+                            x.Property(x => x.AlunoId)
+                                .HasColumnName("id_aluno")
+                                .IsRequired();
+                        }                 
+                    );
         }
     }
 }
