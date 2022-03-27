@@ -1,7 +1,7 @@
-using CursoDeIngles.Data.Context;
-using CursoDeIngles.Data.Repository;
-using CursoDeIngles.Data.Repository.Interfaces;
-using CursoDeIngles.Helpers;
+using CursoDeIngles.Infra.Context;
+using CursoDeIngles.Infra.Repository;
+using CursoDeIngles.Infra.Repository.Interfaces;
+using CursoDeIngles.Services.Helpers;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

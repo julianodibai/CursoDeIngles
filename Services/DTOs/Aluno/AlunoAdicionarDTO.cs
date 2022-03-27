@@ -1,11 +1,11 @@
 
-namespace CursoDeIngles.Models.Entities
+namespace CursoDeIngles.Services.DTOs
 {
-    public class Aluno : Base
+    public class AlunoAdicionarDTO
     {
         public string Nome { get; set; }
         public string CPF { get; set; }
         public string Email { get; set; }
-        public List<Turma> Turmas { get; set; }
+        
     }
 }

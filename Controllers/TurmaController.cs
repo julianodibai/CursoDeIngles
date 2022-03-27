@@ -1,7 +1,7 @@
 
 using AutoMapper;
-using CursoDeIngles.Data.Repository.Interfaces;
-using CursoDeIngles.Models.DTOs;
+using CursoDeIngles.Infra.Repository.Interfaces;
+using CursoDeIngles.Services.DTOs;
 using CursoDeIngles.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
