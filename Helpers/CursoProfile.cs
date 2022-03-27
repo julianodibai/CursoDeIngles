@@ -29,6 +29,13 @@ namespace CursoDeIngles.Helpers
                     );
             CreateMap<Matricula, MatriculaDTO>();
             CreateMap<Matricula, MatriculaDetalhesDTO>();
+            CreateMap<MatriculaAdicionarDTO, Matricula>()
+                    .ForAllMembers(
+                        opts => opts.Condition(
+                                        (src, dest, srcMember)
+                                        => srcMember != null     
+                        )
+                    );
             CreateMap<Turma, TurmaDTO>();
             CreateMap<Turma, TurmaIdDTO>();
             CreateMap<Turma, TurmaDetalhesDTO>();

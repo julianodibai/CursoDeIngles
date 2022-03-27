@@ -27,26 +27,29 @@ namespace CursoDeIngles.Data.Mappings
                     
             builder.HasMany(a => a.Turmas)
                     .WithMany(t => t.Alunos)
-                    .UsingEntity<Matricula>(
-                        x => x.HasOne(a => a.Turma)
+                    .UsingEntity<Matricula>();/*
+                        m => m.HasOne(a => a.Turma)
                                 .WithMany()
                                 .HasForeignKey(t => t.TurmaId),
-                        x => x.HasOne(t => t.Aluno)
+                        m => m.HasOne(t => t.Aluno)
                                 .WithMany()
                                 .HasForeignKey(a => a.AlunoId),  
-                        x =>
+                       /* m =>
                         {
-                            x.ToTable("tb_matricula");
+                            m.ToTable("tb_matricula");
 
-                            x.HasKey(x => new {x.TurmaId, x.AlunoId});
-                            x.Property(x => x.TurmaId)
+                            m.HasKey(m => new {m.TurmaId, m.AlunoId});
+                            m.Property(m => m.Id)
+                                .HasColumnName("id").ValueGeneratedOnAdd();
+                            m.Property(m => m.TurmaId)
                                 .HasColumnName("id_turma")
                                 .IsRequired();
-                            x.Property(x => x.AlunoId)
+                            m.Property(m => m.AlunoId)
                                 .HasColumnName("id_aluno")
-                                .IsRequired();
-                        }                 
-                    );
+                                .IsRequired();          
+
+                        }                
+                )*/
         }
     }
 }

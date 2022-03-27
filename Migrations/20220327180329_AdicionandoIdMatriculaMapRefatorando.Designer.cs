@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CursoDeIngles.Migrations
 {
     [DbContext(typeof(CursoContext))]
-    [Migration("20220327161811_Matricula")]
-    partial class Matricula
+    [Migration("20220327180329_AdicionandoIdMatriculaMapRefatorando")]
+    partial class AdicionandoIdMatriculaMapRefatorando
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,21 @@ namespace CursoDeIngles.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("AlunoTurma", b =>
+                {
+                    b.Property<int>("AlunosId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TurmasId")
+                        .HasColumnType("int");
+
+                    b.HasKey("AlunosId", "TurmasId");
+
+                    b.HasIndex("TurmasId");
+
+                    b.ToTable("AlunoTurma");
+                });
 
             modelBuilder.Entity("CursoDeIngles.Models.Entities.Aluno", b =>
                 {
@@ -62,6 +77,13 @@ namespace CursoDeIngles.Migrations
                         .HasColumnType("int")
                         .HasColumnName("id_aluno");
 
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("id");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.HasKey("TurmaId", "AlunoId");
 
                     b.HasIndex("AlunoId");
@@ -89,6 +111,21 @@ namespace CursoDeIngles.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("tb_turma", (string)null);
+                });
+
+            modelBuilder.Entity("AlunoTurma", b =>
+                {
+                    b.HasOne("CursoDeIngles.Models.Entities.Aluno", null)
+                        .WithMany()
+                        .HasForeignKey("AlunosId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CursoDeIngles.Models.Entities.Turma", null)
+                        .WithMany()
+                        .HasForeignKey("TurmasId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CursoDeIngles.Models.Entities.Matricula", b =>

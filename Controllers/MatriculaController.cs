@@ -2,6 +2,7 @@
 using AutoMapper;
 using CursoDeIngles.Data.Repository.Interfaces;
 using CursoDeIngles.Models.DTOs;
+using CursoDeIngles.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursoDeIngles.Controllers
@@ -18,7 +19,7 @@ namespace CursoDeIngles.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-        /*[HttpGet]
+        [HttpGet]
         public async Task<IActionResult> Get()
         {
             var MatriculasDTO = await _repository.BuscarMatriculasAsync();
@@ -26,7 +27,7 @@ namespace CursoDeIngles.Controllers
             return MatriculasDTO.Any()
                         ? Ok(MatriculasDTO)
                         : BadRequest("Não tem matricula");
-        }*/
+        }
         [HttpGet("{alunoId}")]
         public async Task<IActionResult> GetById(int alunoId)
         {
@@ -36,9 +37,9 @@ namespace CursoDeIngles.Controllers
 
             return alunoRetorno != null
                         ? Ok(alunoRetorno)
-                        : BadRequest("Não tem alunos");
+                        : BadRequest("Não tem essa matricula");
         } 
-        /*[HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Post(MatriculaAdicionarDTO matricula)
         {
             if(matricula == null)
@@ -52,6 +53,24 @@ namespace CursoDeIngles.Controllers
                                         ? Ok("Matricula adicionada com sucesso")
                                         : BadRequest("Erro ao salvar Matricula");
 
-        }  */
+        } 
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if(id <= 0)
+                return BadRequest("Matricula não existe");
+
+            var turmaExcluir = await _repository.BuscarMatriculaIdAsync(id);
+
+            if(turmaExcluir == null) 
+                return NotFound("Matricula não encontrado");
+            
+            _repository.Delete(turmaExcluir);
+
+            return await _repository.SaveChangesAsync()
+                                ? Ok("Matricula Excluida com sucesso")
+                                : BadRequest("Erro ao excluir Matricula");
+        } 
     }
 }

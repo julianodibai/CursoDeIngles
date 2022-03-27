@@ -1,9 +1,9 @@
 
 namespace CursoDeIngles.Models.DTOs
 {
-    public class MatriculaDTO
+    public class MatriculaAdicionarDTO
     {
-        public int Id { get; set; }
+        
         public int AlunoId { get; set; }
         public int TurmaId { get; set; }
     }

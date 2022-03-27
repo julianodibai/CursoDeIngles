@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CursoDeIngles.Migrations
 {
-    public partial class Matricula : Migration
+    public partial class AdicionandoIdMatriculaMapRefatorando : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -39,11 +39,37 @@ namespace CursoDeIngles.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "AlunoTurma",
+                columns: table => new
+                {
+                    AlunosId = table.Column<int>(type: "int", nullable: false),
+                    TurmasId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AlunoTurma", x => new { x.AlunosId, x.TurmasId });
+                    table.ForeignKey(
+                        name: "FK_AlunoTurma_tb_aluno_AlunosId",
+                        column: x => x.AlunosId,
+                        principalTable: "tb_aluno",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AlunoTurma_tb_turma_TurmasId",
+                        column: x => x.TurmasId,
+                        principalTable: "tb_turma",
+                        principalColumn: "id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "tb_matricula",
                 columns: table => new
                 {
                     id_aluno = table.Column<int>(type: "int", nullable: false),
-                    id_turma = table.Column<int>(type: "int", nullable: false)
+                    id_turma = table.Column<int>(type: "int", nullable: false),
+                    id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1")
                 },
                 constraints: table =>
                 {
@@ -63,6 +89,11 @@ namespace CursoDeIngles.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AlunoTurma_TurmasId",
+                table: "AlunoTurma",
+                column: "TurmasId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_tb_matricula_id_aluno",
                 table: "tb_matricula",
                 column: "id_aluno");
@@ -70,6 +101,9 @@ namespace CursoDeIngles.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "AlunoTurma");
+
             migrationBuilder.DropTable(
                 name: "tb_matricula");
 

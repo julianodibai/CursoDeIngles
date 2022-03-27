@@ -1,6 +1,7 @@
 
 using CursoDeIngles.Data.Context;
 using CursoDeIngles.Data.Repository.Interfaces;
+using CursoDeIngles.Models.DTOs;
 using CursoDeIngles.Models.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,7 @@ namespace CursoDeIngles.Data.Repository
              _context = context;
         }
 
-        /*public async Task<IEnumerable<MatriculaDTO>> BuscarMatriculasAsync()
+        public async Task<List<MatriculaDTO>> BuscarMatriculasAsync()
         {
             return await _context.Matriculas
                              .Select(
@@ -25,7 +26,7 @@ namespace CursoDeIngles.Data.Repository
 
                              })
                              .ToListAsync();   
-        }*/
+        }
         public async Task<Matricula> BuscarMatriculaIdAsync(int alunoId)
         {
             return await _context.Matriculas
