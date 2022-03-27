@@ -1,8 +1,7 @@
 
 using AutoMapper;
 using CursoDeIngles.Data.Repository.Interfaces;
-using CursoDeIngles.Models.DTOs.Matricula;
-using CursoDeIngles.Models.Entities;
+using CursoDeIngles.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CursoDeIngles.Controllers
@@ -19,7 +18,7 @@ namespace CursoDeIngles.Controllers
             _repository = repository;
             _mapper = mapper;
         }
-        [HttpGet]
+        /*[HttpGet]
         public async Task<IActionResult> Get()
         {
             var MatriculasDTO = await _repository.BuscarMatriculasAsync();
@@ -27,19 +26,19 @@ namespace CursoDeIngles.Controllers
             return MatriculasDTO.Any()
                         ? Ok(MatriculasDTO)
                         : BadRequest("Não tem matricula");
-        }
-        [HttpGet("{id}")]
-        public async Task<IActionResult> GetById(int id)
+        }*/
+        [HttpGet("{alunoId}")]
+        public async Task<IActionResult> GetById(int alunoId)
         {
-            var aluno = await _repository.BuscarMatriculaIdAsync(id);
+            var aluno = await _repository.BuscarMatriculaIdAsync(alunoId);
 
-            var alunoRetorno = _mapper.Map<MatriculaDetalhesDTO>(aluno);
+            var alunoRetorno = _mapper.Map<MatriculaDTO>(aluno);
 
             return alunoRetorno != null
                         ? Ok(alunoRetorno)
                         : BadRequest("Não tem alunos");
         } 
-        [HttpPost]
+        /*[HttpPost]
         public async Task<IActionResult> Post(MatriculaAdicionarDTO matricula)
         {
             if(matricula == null)
@@ -53,6 +52,6 @@ namespace CursoDeIngles.Controllers
                                         ? Ok("Matricula adicionada com sucesso")
                                         : BadRequest("Erro ao salvar Matricula");
 
-        }  
+        }  */
     }
 }

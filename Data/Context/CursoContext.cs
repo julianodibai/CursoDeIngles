@@ -8,6 +8,7 @@ namespace CursoDeIngles.Data.Context
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<Turma> Turmas { get; set; }
         public DbSet<Matricula> Matriculas { get; set; }
+        
         public CursoContext(DbContextOptions<CursoContext> options) : base(options)
         { }
 

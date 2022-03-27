@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CursoDeIngles.Migrations
 {
     [DbContext(typeof(CursoContext))]
-    [Migration("20220326175911_Matricula")]
+    [Migration("20220327161811_Matricula")]
     partial class Matricula
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,7 +39,6 @@ namespace CursoDeIngles.Migrations
                         .HasColumnName("cpf");
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("email");
 
@@ -53,7 +52,7 @@ namespace CursoDeIngles.Migrations
                     b.ToTable("tb_aluno", (string)null);
                 });
 
-            modelBuilder.Entity("CursoDeIngles.Models.Entities.AlunoTurma", b =>
+            modelBuilder.Entity("CursoDeIngles.Models.Entities.Matricula", b =>
                 {
                     b.Property<int>("TurmaId")
                         .HasColumnType("int")
@@ -67,30 +66,7 @@ namespace CursoDeIngles.Migrations
 
                     b.HasIndex("AlunoId");
 
-                    b.ToTable("tb_aluno_turma", (string)null);
-                });
-
-            modelBuilder.Entity("CursoDeIngles.Models.Entities.Matricula", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<int>("AlunoId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TurmaId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AlunoId");
-
-                    b.HasIndex("TurmaId");
-
-                    b.ToTable("Matriculas");
+                    b.ToTable("tb_matricula", (string)null);
                 });
 
             modelBuilder.Entity("CursoDeIngles.Models.Entities.Turma", b =>
@@ -107,32 +83,12 @@ namespace CursoDeIngles.Migrations
                         .HasColumnName("anoLetivo");
 
                     b.Property<string>("Nivel")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("nivel");
 
                     b.HasKey("Id");
 
                     b.ToTable("tb_turma", (string)null);
-                });
-
-            modelBuilder.Entity("CursoDeIngles.Models.Entities.AlunoTurma", b =>
-                {
-                    b.HasOne("CursoDeIngles.Models.Entities.Aluno", "Aluno")
-                        .WithMany()
-                        .HasForeignKey("AlunoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("CursoDeIngles.Models.Entities.Turma", "Turma")
-                        .WithMany()
-                        .HasForeignKey("TurmaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Aluno");
-
-                    b.Navigation("Turma");
                 });
 
             modelBuilder.Entity("CursoDeIngles.Models.Entities.Matricula", b =>

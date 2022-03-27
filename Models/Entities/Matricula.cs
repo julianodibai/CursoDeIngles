@@ -1,7 +1,6 @@
-
 namespace CursoDeIngles.Models.Entities
 {
-    public class Matricula : Base
+    public class Matricula
     {
         public Aluno Aluno { get; set; }
         public int AlunoId { get; set; }

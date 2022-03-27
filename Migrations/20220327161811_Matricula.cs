@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CursoDeIngles.Migrations
 {
-    public partial class RetornarTurmasNoAlunos : Migration
+    public partial class Matricula : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -17,7 +17,7 @@ namespace CursoDeIngles.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     nome = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     cpf = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    email = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    email = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -30,6 +30,7 @@ namespace CursoDeIngles.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    nivel = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     anoLetivo = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -38,7 +39,7 @@ namespace CursoDeIngles.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "tb_aluno_turma",
+                name: "tb_matricula",
                 columns: table => new
                 {
                     id_aluno = table.Column<int>(type: "int", nullable: false),
@@ -46,15 +47,15 @@ namespace CursoDeIngles.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_tb_aluno_turma", x => new { x.id_turma, x.id_aluno });
+                    table.PrimaryKey("PK_tb_matricula", x => new { x.id_turma, x.id_aluno });
                     table.ForeignKey(
-                        name: "FK_tb_aluno_turma_tb_aluno_id_aluno",
+                        name: "FK_tb_matricula_tb_aluno_id_aluno",
                         column: x => x.id_aluno,
                         principalTable: "tb_aluno",
                         principalColumn: "id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_tb_aluno_turma_tb_turma_id_turma",
+                        name: "FK_tb_matricula_tb_turma_id_turma",
                         column: x => x.id_turma,
                         principalTable: "tb_turma",
                         principalColumn: "id",
@@ -62,15 +63,15 @@ namespace CursoDeIngles.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_tb_aluno_turma_id_aluno",
-                table: "tb_aluno_turma",
+                name: "IX_tb_matricula_id_aluno",
+                table: "tb_matricula",
                 column: "id_aluno");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "tb_aluno_turma");
+                name: "tb_matricula");
 
             migrationBuilder.DropTable(
                 name: "tb_aluno");

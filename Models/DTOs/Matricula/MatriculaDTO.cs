@@ -1,6 +1,6 @@
 
 
-namespace CursoDeIngles.Models.DTOs.Matricula
+namespace CursoDeIngles.Models.DTOs
 {
     public class MatriculaDTO
     {

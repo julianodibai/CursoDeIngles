@@ -27,7 +27,7 @@ namespace CursoDeIngles.Data.Mappings
                     
             builder.HasMany(a => a.Turmas)
                     .WithMany(t => t.Alunos)
-                    .UsingEntity<AlunoTurma>(
+                    .UsingEntity<Matricula>(
                         x => x.HasOne(a => a.Turma)
                                 .WithMany()
                                 .HasForeignKey(t => t.TurmaId),
@@ -36,7 +36,7 @@ namespace CursoDeIngles.Data.Mappings
                                 .HasForeignKey(a => a.AlunoId),  
                         x =>
                         {
-                            x.ToTable("tb_aluno_turma");
+                            x.ToTable("tb_matricula");
 
                             x.HasKey(x => new {x.TurmaId, x.AlunoId});
                             x.Property(x => x.TurmaId)

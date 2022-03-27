@@ -2,7 +2,6 @@
 using AutoMapper;
 using CursoDeIngles.Data.Repository.Interfaces;
 using CursoDeIngles.Models.DTOs;
-using CursoDeIngles.Models.DTOs.Turma;
 using CursoDeIngles.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 

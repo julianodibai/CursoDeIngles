@@ -1,7 +1,5 @@
 using AutoMapper;
 using CursoDeIngles.Models.DTOs;
-using CursoDeIngles.Models.DTOs.Matricula;
-using CursoDeIngles.Models.DTOs.Turma;
 using CursoDeIngles.Models.Entities;
 
 namespace CursoDeIngles.Helpers
@@ -11,8 +9,8 @@ namespace CursoDeIngles.Helpers
         public CursoProfile()
         {
             CreateMap<Aluno, AlunoDTO>();
-            CreateMap<Aluno, AlunoDetalhesDTO>()
-                                .ForMember(
+            CreateMap<Aluno, AlunoDetalhesDTO>();
+                              /*  .ForMember(
                                         dest => dest.Turmas,
                                         opt => opt.MapFrom(
                                             src => src.Turmas
@@ -21,7 +19,7 @@ namespace CursoDeIngles.Helpers
                                                     
                                             
                                         )
-                                );
+                                );*/
             CreateMap<AlunoAdicionarDTO, Aluno>()
                     .ForAllMembers(
                         opts => opts.Condition(
@@ -29,6 +27,8 @@ namespace CursoDeIngles.Helpers
                                         => srcMember != null     
                         )
                     );
+            CreateMap<Matricula, MatriculaDTO>();
+            CreateMap<Matricula, MatriculaDetalhesDTO>();
             CreateMap<Turma, TurmaDTO>();
             CreateMap<Turma, TurmaIdDTO>();
             CreateMap<Turma, TurmaDetalhesDTO>();
@@ -39,10 +39,9 @@ namespace CursoDeIngles.Helpers
                                         => srcMember != null     
                         )
                     );
-            CreateMap<Matricula, MatriculaDTO>();
-            CreateMap<Matricula, MatriculaDetalhesDTO>()
+           /* CreateMap<Matricula, MatriculaDetalhesDTO>()
                     .ForMember(
-                        dest => dest.Turma,
+                        dest => dest.AlunoTurma,
                         opt => opt.MapFrom(src => src.Turma.Id)
                     );
             CreateMap<MatriculaAdicionarDTO, Matricula>()

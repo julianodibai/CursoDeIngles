@@ -1,6 +1,4 @@
 
-using CursoDeIngles.Models.Entities;
-
 namespace CursoDeIngles.Models.DTOs
 {
     public class AlunoDetalhesDTO
