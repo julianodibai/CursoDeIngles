@@ -1,5 +1,6 @@
 using AutoMapper;
 using CursoDeIngles.Models.DTOs;
+using CursoDeIngles.Models.DTOs.Matricula;
 using CursoDeIngles.Models.DTOs.Turma;
 using CursoDeIngles.Models.Entities;
 
@@ -9,7 +10,18 @@ namespace CursoDeIngles.Helpers
     {
         public CursoProfile()
         {
-            CreateMap<Aluno, AlunoDetalhesDTO>();
+            CreateMap<Aluno, AlunoDTO>();
+            CreateMap<Aluno, AlunoDetalhesDTO>()
+                                .ForMember(
+                                        dest => dest.Turmas,
+                                        opt => opt.MapFrom(
+                                            src => src.Turmas
+                                                .Select(t => t.Id)
+                                                .ToArray()
+                                                    
+                                            
+                                        )
+                                );
             CreateMap<AlunoAdicionarDTO, Aluno>()
                     .ForAllMembers(
                         opts => opts.Condition(
@@ -27,7 +39,27 @@ namespace CursoDeIngles.Helpers
                                         => srcMember != null     
                         )
                     );
-            CreateMap<MatriculaAlunoDTO, Matricula>()
+            CreateMap<Matricula, MatriculaDTO>();
+            CreateMap<Matricula, MatriculaDetalhesDTO>()
+                    .ForMember(
+                        dest => dest.Turma,
+                        opt => opt.MapFrom(src => src.Turma.Id)
+                    );
+            CreateMap<MatriculaAdicionarDTO, Matricula>()
+                     .ForMember(
+                        dest => dest.Turma,
+                        opt => opt.Ignore()
+
+                    )
+                    .ForAllMembers(
+                        opts => opts.Condition(
+                                        (src, dest, srcMember)
+                                        => srcMember != null     
+                        )
+                    );
+
+
+            /*CreateMap<MatriculaAlunoDTO, Matricula>()
                     .ForMember(
                         dest => dest.Turma,
                         opt => opt.Ignore()
@@ -37,7 +69,8 @@ namespace CursoDeIngles.Helpers
                     .ForMember(
                         dest => dest.Turma,
                         opt => opt.MapFrom(src => src.Turma.Id)
-                    );
+                    );*/
+
         }
     }
 }

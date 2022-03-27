@@ -24,6 +24,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options => {
 builder.Services.AddScoped<IBaseRepository, BaseRepository>();
 builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
 builder.Services.AddScoped<ITurmaRepository, TurmaRepository>();
+builder.Services.AddScoped<IMatriculaRepository, MatriculaRepository>();
 builder.Services.AddAutoMapper(typeof(CursoProfile)); //ou program?
 
 
