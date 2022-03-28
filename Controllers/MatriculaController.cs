@@ -13,12 +13,12 @@ namespace CursoDeIngles.Controllers
     public class MatriculaController : ControllerBase
     {
         private readonly IMatriculaRepository _repository;
-        private readonly ITurmaRepository _turmarRepository;
+        private readonly ITurmaRepository _turmaRepository;
         private readonly IMapper _mapper;
-        public MatriculaController(IMatriculaRepository repository, ITurmaRepository turmarRepository, IMapper mapper)
+        public MatriculaController(IMatriculaRepository repository, ITurmaRepository turmaRepository, IMapper mapper)
         {
             _repository = repository;
-            _turmarRepository = turmarRepository;
+            _turmaRepository = turmaRepository;
             _mapper = mapper;
         }
         [HttpGet]
@@ -44,10 +44,21 @@ namespace CursoDeIngles.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(MatriculaAdicionarDTO matricula)
         {
+            //buscar turma pelo id e tratar
             try
             {
                 if(matricula == null)
                     return BadRequest("Dados invalidos");
+
+                var turma = await _turmaRepository.BuscarTurmaIdAsync(matricula.TurmaId);
+
+                var turmaValidar = _mapper.Map<Turma>(turma);
+
+                var listaAlunos = turmaValidar.Alunos.Count;
+                
+                if(listaAlunos >= 5)
+                    return BadRequest($"A turma {turmaValidar.Id} chegou em seu limite de 5 alunos");
+
 
                 var matriculaAdicionar = _mapper.Map<Matricula>(matricula);
                 
@@ -60,7 +71,7 @@ namespace CursoDeIngles.Controllers
             }
             catch (Microsoft.EntityFrameworkCore.DbUpdateException)
             { 
-                return BadRequest("Matricula já cadastrada ou turma não existe ");
+                return BadRequest("Matricula já cadastrada ou aluno ou/e turma não existe ");
             }
 
         } 

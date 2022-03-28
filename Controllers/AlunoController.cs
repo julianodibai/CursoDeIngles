@@ -12,11 +12,13 @@ namespace CursoDeIngles.Controllers
     {
         private readonly IAlunoRepository _repository;
         private readonly IMatriculaRepository _matriculaRepository;
+        private readonly ITurmaRepository _turmaRepository;
         private readonly IMapper _mapper;
-        public AlunoController(IAlunoRepository repository,IMatriculaRepository matriculaRepository, IMapper mapper)
+        public AlunoController(IAlunoRepository repository,IMatriculaRepository matriculaRepository,ITurmaRepository turmaRepository, IMapper mapper)
         {
             _repository = repository;
-            _matriculaRepository= matriculaRepository;
+            _matriculaRepository = matriculaRepository;
+            _turmaRepository = turmaRepository;
             _mapper = mapper;
         }
         [HttpGet]
@@ -45,10 +47,18 @@ namespace CursoDeIngles.Controllers
             
             if(aluno == null)
                 return BadRequest("Dados invalidos");
+            
+            var turma = await _turmaRepository.BuscarTurmaIdAsync(aluno.TurmaId);
+
+            var turmaValidar = _mapper.Map<Turma>(turma);
+
+            var listaAlunos = turmaValidar.Alunos.Count;
+                
+            if(listaAlunos >= 5)
+                return BadRequest($"A turma {turmaValidar.Id} chegou em seu limite de 5 alunos");
 
             var alunoAdicionar = _mapper.Map<Aluno>(aluno.AlunoAdicionar);
-            
-            
+             
             var verificarCpf = await _repository.VerificarCpfAsync(alunoAdicionar);
             
             if(verificarCpf != null)
@@ -56,6 +66,7 @@ namespace CursoDeIngles.Controllers
             _repository.Add(alunoAdicionar);
             
             await _repository.SaveChangesAsync();
+
 
             var matricuaAlunoAdicionar = new MatriculaAdicionarDTO
             {
