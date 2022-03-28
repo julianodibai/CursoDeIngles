@@ -46,20 +46,20 @@ namespace CursoDeIngles.Controllers
             if(aluno == null)
                 return BadRequest("Dados invalidos");
 
-            var alunoAD = _mapper.Map<Aluno>(aluno.AlunoAdicionar);
+            var alunoAdicionar = _mapper.Map<Aluno>(aluno.AlunoAdicionar);
             
             
-            var verificarCpf = await _repository.VerificarCpfAsync(alunoAD);
+            var verificarCpf = await _repository.VerificarCpfAsync(alunoAdicionar);
             
             if(verificarCpf != null)
                 return BadRequest("CPF já existe");
-            _repository.Add(alunoAD);
+            _repository.Add(alunoAdicionar);
             
             await _repository.SaveChangesAsync();
 
             var matricuaAlunoAdicionar = new MatriculaAdicionarDTO
             {
-                AlunoId = alunoAD.Id,
+                AlunoId = alunoAdicionar.Id,
                 TurmaId = aluno.TurmaId
             };
 

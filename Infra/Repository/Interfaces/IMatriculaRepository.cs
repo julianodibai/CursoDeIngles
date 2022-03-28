@@ -6,6 +6,6 @@ namespace CursoDeIngles.Infra.Repository.Interfaces
     public interface IMatriculaRepository :  IBaseRepository
     {
         Task<List<MatriculaDTO>> BuscarMatriculasAsync();
-        Task<Matricula> BuscarMatriculaIdAsync(int alunoId);
+        Task<Matricula> BuscarMatriculaIdAsync(int matriculaId);
     }
 }

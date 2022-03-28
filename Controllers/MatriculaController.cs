@@ -13,10 +13,12 @@ namespace CursoDeIngles.Controllers
     public class MatriculaController : ControllerBase
     {
         private readonly IMatriculaRepository _repository;
+        private readonly ITurmaRepository _turmarRepository;
         private readonly IMapper _mapper;
-        public MatriculaController(IMatriculaRepository repository, IMapper mapper)
+        public MatriculaController(IMatriculaRepository repository, ITurmaRepository turmarRepository, IMapper mapper)
         {
             _repository = repository;
+            _turmarRepository = turmarRepository;
             _mapper = mapper;
         }
         [HttpGet]

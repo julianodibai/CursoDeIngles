@@ -27,10 +27,10 @@ namespace CursoDeIngles.Infra.Repository
                              })
                              .ToListAsync();   
         }
-        public async Task<Matricula> BuscarMatriculaIdAsync(int alunoId)
+        public async Task<Matricula> BuscarMatriculaIdAsync(int matriculaId)
         {
             return await _context.Matriculas
-                .Where(x => x.AlunoId == alunoId)
+                .Where(x => x.Id == matriculaId)
                 .FirstOrDefaultAsync();
                 
         }
