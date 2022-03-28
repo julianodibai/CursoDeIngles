@@ -93,6 +93,11 @@ namespace CursoDeIngles.Controllers
             var alunoDb = await _repository.BuscarAlunosIdAsync(id);
 
             var alunoAtualizar = _mapper.Map(aluno, alunoDb);
+            
+            var verificarCpf = await _repository.VerificarCpfAsync(alunoAtualizar);
+            
+            if(verificarCpf != null)
+                return BadRequest("CPF já existe");
 
             _repository.Update(alunoAtualizar);
 
