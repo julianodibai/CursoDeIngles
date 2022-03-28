@@ -39,7 +39,7 @@ namespace CursoDeIngles.Controllers
 
             return alunoRetorno != null
                         ? Ok(alunoRetorno)
-                        : BadRequest("Não tem alunos");
+                        : BadRequest($"Não tem o aluno {id}");
         }   
         [HttpPost()]
         public async Task<IActionResult> Post(MatriculaAdicionarAlunoDTO aluno)

@@ -52,7 +52,7 @@ namespace CursoDeIngles.Controllers
                 var turma = await _turmaRepository.BuscarTurmaIdAsync(matricula.TurmaId);
 
                 if(turma == null)
-                    return BadRequest("Dados invalidos");
+                    return BadRequest($"Id da turma {matricula.TurmaId} não existe");
 
                 var turmaValidar = _mapper.Map<Turma>(turma);
 
@@ -70,9 +70,13 @@ namespace CursoDeIngles.Controllers
                             : BadRequest("Erro ao salvar Matricula");
 
             }
+            catch (System.InvalidOperationException)
+            {
+                return BadRequest("Matricula já foi cadastrada");
+            }
             catch (Microsoft.EntityFrameworkCore.DbUpdateException)
             { 
-                return BadRequest("Matricula já cadastrada ou aluno ou/e turma não existe ");
+                return BadRequest("aluno não existe ");
             }
 
         } 
