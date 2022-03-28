@@ -8,6 +8,7 @@ namespace CursoDeIngles.Infra.Repository.Interfaces
     {
         Task<List<AlunoDTO>> BuscarAlunosAsync();
         Task<Aluno> BuscarAlunosIdAsync(int id);
+        Task<Aluno> VerificarCpfAsync(Aluno aluno);
 
     }
 }

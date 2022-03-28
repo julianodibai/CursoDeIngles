@@ -11,10 +11,12 @@ namespace CursoDeIngles.Controllers
     public class AlunoController : ControllerBase
     {
         private readonly IAlunoRepository _repository;
+        private readonly IMatriculaRepository _matriculaRepository;
         private readonly IMapper _mapper;
-        public AlunoController(IAlunoRepository repository, IMapper mapper)
+        public AlunoController(IAlunoRepository repository,IMatriculaRepository matriculaRepository, IMapper mapper)
         {
             _repository = repository;
+            _matriculaRepository= matriculaRepository;
             _mapper = mapper;
         }
         [HttpGet]
@@ -37,19 +39,25 @@ namespace CursoDeIngles.Controllers
                         ? Ok(alunoRetorno)
                         : BadRequest("Não tem alunos");
         }   
-        [HttpPost]
+        [HttpPost()]
         public async Task<IActionResult> Post(AlunoAdicionarDTO aluno)
         {
+            
             if(aluno == null)
                 return BadRequest("Dados invalidos");
 
             var alunoAdicionar = _mapper.Map<Aluno>(aluno);
 
+            var verificarCpf = await _repository.VerificarCpfAsync(alunoAdicionar);
+            
+            if(verificarCpf != null)
+                return BadRequest("CPF já existe");
+            
             _repository.Add(alunoAdicionar);
-
+            
             return await _repository.SaveChangesAsync() 
-                                        ? Ok("Aluno adicionado com sucesso")
-                                        : BadRequest("Erro ao salvar aluno");
+                                    ? Ok("Aluno adicionado com sucesso")
+                                    : BadRequest("Erro ao salvar aluno");
 
         }     
         [HttpPut("{id}")]

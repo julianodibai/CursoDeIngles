@@ -33,5 +33,12 @@ namespace CursoDeIngles.Infra.Repository
                                     .Where(a => a.Id == id)
                                     .FirstOrDefaultAsync();                     
         }
+
+        public async Task<Aluno> VerificarCpfAsync(Aluno aluno)
+        {
+           return await _context.Alunos
+                                .Where(a => a.CPF == aluno.CPF)
+                                .FirstOrDefaultAsync();         
+        }
     }
 }

@@ -28,30 +28,38 @@ namespace CursoDeIngles.Controllers
                         ? Ok(MatriculasDTO)
                         : BadRequest("Não tem matricula");
         }
-        [HttpGet("{alunoId}")]
-        public async Task<IActionResult> GetById(int alunoId)
+        [HttpGet("{matriculaId}")]
+        public async Task<IActionResult> GetById(int matriculaId)
         {
-            var aluno = await _repository.BuscarMatriculaIdAsync(alunoId);
+            var matricula = await _repository.BuscarMatriculaIdAsync(matriculaId);
 
-            var alunoRetorno = _mapper.Map<MatriculaDTO>(aluno);
+            var matriculaRetorno = _mapper.Map<MatriculaDTO>(matricula);
 
-            return alunoRetorno != null
-                        ? Ok(alunoRetorno)
+            return matriculaRetorno != null
+                        ? Ok(matriculaRetorno)
                         : BadRequest("Não tem essa matricula");
         } 
         [HttpPost]
         public async Task<IActionResult> Post(MatriculaAdicionarDTO matricula)
         {
-            if(matricula == null)
-                return BadRequest("Dados invalidos");
+            try
+            {
+                if(matricula == null)
+                    return BadRequest("Dados invalidos");
 
-            var matriculaAdicionar = _mapper.Map<Matricula>(matricula);
+                var matriculaAdicionar = _mapper.Map<Matricula>(matricula);
+                
+                _repository.Add(matriculaAdicionar);
 
-            _repository.Add(matriculaAdicionar);
+                return await _repository.SaveChangesAsync() 
+                            ? Ok("Matricula adicionada com sucesso")
+                            : BadRequest("Erro ao salvar Matricula");
 
-            return await _repository.SaveChangesAsync() 
-                                        ? Ok("Matricula adicionada com sucesso")
-                                        : BadRequest("Erro ao salvar Matricula");
+            }
+            catch (Microsoft.EntityFrameworkCore.DbUpdateException)
+            { 
+                return BadRequest("Matricula já cadastrada ou turma não existe ");
+            }
 
         } 
 

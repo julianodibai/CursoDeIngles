@@ -81,6 +81,9 @@ namespace CursoDeIngles.Controllers
             if(turmaExcluir == null) 
                 return NotFound("Turma não encontrado");
             
+            if(turmaExcluir.Alunos != null)
+                return BadRequest("Turma ainda tem alunos");
+
             _repository.Delete(turmaExcluir);
 
             return await _repository.SaveChangesAsync()
