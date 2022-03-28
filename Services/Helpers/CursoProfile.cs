@@ -10,16 +10,6 @@ namespace CursoDeIngles.Services.Helpers
         {
             CreateMap<Aluno, AlunoDTO>();
             CreateMap<Aluno, AlunoDetalhesDTO>();
-                              /*  .ForMember(
-                                        dest => dest.Turmas,
-                                        opt => opt.MapFrom(
-                                            src => src.Turmas
-                                                .Select(t => t.Id)
-                                                .ToArray()
-                                                    
-                                            
-                                        )
-                                );*/
             CreateMap<AlunoAdicionarDTO, Aluno>()
                     .ForAllMembers(
                         opts => opts.Condition(
@@ -37,11 +27,6 @@ namespace CursoDeIngles.Services.Helpers
                         )
                     );
             CreateMap<MatriculaAdicionarAlunoDTO, Matricula>()
-                    /*.ForMember(
-                        dest => dest.AlunoId,
-                        opt => opt.Ignore()
-
-                    )*/
                     .ForAllMembers(
                         opts => opts.Condition(
                                         (src, dest, srcMember)
@@ -59,36 +44,6 @@ namespace CursoDeIngles.Services.Helpers
                                         => srcMember != null     
                         )
                     );
-           /* CreateMap<Matricula, MatriculaDetalhesDTO>()
-                    .ForMember(
-                        dest => dest.AlunoTurma,
-                        opt => opt.MapFrom(src => src.Turma.Id)
-                    );
-            CreateMap<MatriculaAdicionarDTO, Matricula>()
-                     .ForMember(
-                        dest => dest.Turma,
-                        opt => opt.Ignore()
-
-                    )
-                    .ForAllMembers(
-                        opts => opts.Condition(
-                                        (src, dest, srcMember)
-                                        => srcMember != null     
-                        )
-                    );
-
-
-            /*CreateMap<MatriculaAlunoDTO, Matricula>()
-                    .ForMember(
-                        dest => dest.Turma,
-                        opt => opt.Ignore()
-
-                    );
-            CreateMap<Matricula, MatriculaAlunoDTO>()
-                    .ForMember(
-                        dest => dest.Turma,
-                        opt => opt.MapFrom(src => src.Turma.Id)
-                    );*/
 
         }
     }

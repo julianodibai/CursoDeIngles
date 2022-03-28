@@ -35,15 +35,5 @@ namespace CursoDeIngles.Infra.Repository
                 
         }
 
-
-        /*   public async Task<Matricula> BuscarMatriculaIdAsync(int id)
-           {
-               return await _context.Matriculas
-                                       .Include(m => m.Aluno)
-                                       .ThenInclude(a => a.Turmas)                                             
-                                       .Where(t => t.Id == id)
-                                       .FirstOrDefaultAsync();    
-           }*/
-
     }
 }

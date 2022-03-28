@@ -44,13 +44,15 @@ namespace CursoDeIngles.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(MatriculaAdicionarDTO matricula)
         {
-            //buscar turma pelo id e tratar
             try
             {
-                if(matricula == null)
+                if(matricula == null || (matricula.AlunoId  <=0 || matricula.TurmaId <=0))
                     return BadRequest("Dados invalidos");
 
                 var turma = await _turmaRepository.BuscarTurmaIdAsync(matricula.TurmaId);
+
+                if(turma == null)
+                    return BadRequest("Dados invalidos");
 
                 var turmaValidar = _mapper.Map<Turma>(turma);
 
@@ -58,7 +60,6 @@ namespace CursoDeIngles.Controllers
                 
                 if(listaAlunos >= 5)
                     return BadRequest($"A turma {turmaValidar.Id} chegou em seu limite de 5 alunos");
-
 
                 var matriculaAdicionar = _mapper.Map<Matricula>(matricula);
                 
