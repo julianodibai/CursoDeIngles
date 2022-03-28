@@ -40,24 +40,37 @@ namespace CursoDeIngles.Controllers
                         : BadRequest("Não tem alunos");
         }   
         [HttpPost()]
-        public async Task<IActionResult> Post(AlunoAdicionarDTO aluno)
+        public async Task<IActionResult> Post(MatriculaAdicionarAlunoDTO aluno)
         {
             
             if(aluno == null)
                 return BadRequest("Dados invalidos");
 
-            var alunoAdicionar = _mapper.Map<Aluno>(aluno);
-
-            var verificarCpf = await _repository.VerificarCpfAsync(alunoAdicionar);
+            var alunoAD = _mapper.Map<Aluno>(aluno.AlunoAdicionar);
+            
+            
+            var verificarCpf = await _repository.VerificarCpfAsync(alunoAD);
             
             if(verificarCpf != null)
                 return BadRequest("CPF já existe");
+            _repository.Add(alunoAD);
             
-            _repository.Add(alunoAdicionar);
+            await _repository.SaveChangesAsync();
+
+            var matricuaAlunoAdicionar = new MatriculaAdicionarDTO
+            {
+                AlunoId = alunoAD.Id,
+                TurmaId = aluno.TurmaId
+            };
+
+            var matriculaAdicionar = _mapper.Map<Matricula>(matricuaAlunoAdicionar);
             
-            return await _repository.SaveChangesAsync() 
-                                    ? Ok("Aluno adicionado com sucesso")
-                                    : BadRequest("Erro ao salvar aluno");
+            _matriculaRepository.Add(matriculaAdicionar);
+            
+            
+            return await _matriculaRepository.SaveChangesAsync()
+                        ? Ok("Aluno adicionado com sucesso")
+                        : BadRequest("Erro ao salvar aluno");
 
         }     
         [HttpPut("{id}")]

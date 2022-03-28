@@ -40,5 +40,12 @@ namespace CursoDeIngles.Infra.Repository
                                 .Where(a => a.CPF == aluno.CPF)
                                 .FirstOrDefaultAsync();         
         }
+
+        public async Task<Matricula> BuscarMatricula(int alunoId, int turmaId)
+        {
+            return await _context.Matriculas
+                .Where(x => x.AlunoId == alunoId && x.TurmaId == turmaId)
+                .FirstOrDefaultAsync();
+        }
     }
 }
