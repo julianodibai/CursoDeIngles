@@ -4,6 +4,7 @@
      <li>AspNetCore</li>
      <li>Entity Framework Core</li>
      <li>SQL Server</li>
+     <li>Azure</li>
      <li>AutoMapper</li>
      <li>NewtonsoftJson</li>
      <li>Swashbuckle.AspNetCore.Swagger</li>
