@@ -3,6 +3,7 @@ using CursoDeIngles.Infra.Repository;
 using CursoDeIngles.Infra.Repository.Interfaces;
 using CursoDeIngles.Services.Helpers;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,25 @@ builder.Services.AddCors();
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Title = "Cursos de ingles",
+        Version = "v1",
+        Description = "API construída baseado no teste da empresa Marlin.",
+
+        Contact = new OpenApiContact
+        {
+            Name = "Juliano Dibai",
+            Email = "dibaijuliano@gmail.com",
+            Url = new Uri("https://github.com/julianodibai")
+        },
+
+    });
+			
+
+});
 
 #region Configuração
 
@@ -47,11 +66,9 @@ builder.Services.AddAutoMapper(typeof(CursoProfile));
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
+
 
 app.UseHttpsRedirection();
 

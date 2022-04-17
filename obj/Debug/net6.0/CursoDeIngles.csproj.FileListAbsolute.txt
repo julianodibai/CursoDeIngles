@@ -1,5 +1,15 @@
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\Publish\web.config
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\web.config
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\appsettings.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\appsettings.Development.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\appsettings.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\CursoDeIngles.deps.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\CursoDeIngles.runtimeconfig.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\Publish\appsettings.Development.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\Publish\appsettings.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\Publish\CursoDeIngles.deps.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\Publish\Publish\CursoDeIngles.runtimeconfig.json
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\CursoDeIngles.exe
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\CursoDeIngles.deps.json
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Debug\net6.0\CursoDeIngles.runtimeconfig.json
