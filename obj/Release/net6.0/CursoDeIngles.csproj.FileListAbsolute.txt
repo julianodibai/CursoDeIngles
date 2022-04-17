@@ -75,3 +75,8 @@ C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\pub
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\publish\publish\appsettings.json
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\publish\publish\CursoDeIngles.deps.json
 C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\publish\publish\CursoDeIngles.runtimeconfig.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\publish\publish\publish\web.config
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\publish\publish\publish\appsettings.Development.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\publish\publish\publish\appsettings.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\publish\publish\publish\CursoDeIngles.deps.json
+C:\Users\juliano\OneDrive\Área de Trabalho\CursoDeIngles\bin\Release\net6.0\publish\publish\publish\CursoDeIngles.runtimeconfig.json
